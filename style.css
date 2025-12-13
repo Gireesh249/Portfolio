@@ -1,0 +1,549 @@
+/* --- Base Styles --- */
+/* --- Base Styles --- */
+:root {
+    --primary-color: #00bcd4; /* Teal/Cyan Accent */
+    --background-dark: #0a0a0a; /* Slightly lighter than pure black for depth */
+    --text-light: #f5f5f5;
+    --text-muted: #aaaaaa;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --hover-color: #00bcd4;
+    --max-width: 1100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+    
+    /* ***** LAYERED BACKGROUND STYLES START ***** */
+    
+    /* 1. Stacked background images: Grid pattern (on top) and Your Photo (on bottom) */
+    /* IMPORTANT: Replace 'img/your-uploaded-image.jpg' with the actual path */
+    background-image: 
+        /* Layer 1 (on top): The subtle CSS grid pattern */
+        linear-gradient(0deg, transparent 95%, rgba(51, 51, 51, 0.1) 95%), 
+        linear-gradient(90deg, transparent 95%, rgba(51, 51, 51, 0.1) 95%),
+        /* Layer 2 (on bottom): Your uploaded image */
+        url('bg.jpg'); 
+    
+    /* 2. Sizing for each layer */
+    background-size: 25px 25px, 25px 25px, cover; 
+    
+    /* 3. Positioning and Attachment */
+    background-position: center center;
+    background-repeat: repeat, repeat, no-repeat;
+    background-attachment: fixed;
+    
+    /* 4. Dark Overlay (Critical for Readability) */
+    /* Use the dark background color with the overlay blend mode */
+    background-color: rgba(0, 0, 0, 0.75); 
+    background-blend-mode: overlay; 
+
+    /* ***** LAYERED BACKGROUND STYLES END ***** */
+}
+
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-padding {
+    padding: 100px 20px;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+}
+
+/* --- Navigation & Header --- */
+header {
+    background-color: var(--background-dark);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.nav-container {
+    padding: 15px 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Hero Section --- */
+.hero {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.greeting {
+    font-size: 1.25rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.intro-text {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+.social-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.1rem;
+    margin: 0 15px;
+    transition: color 0.3s;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Buttons --- */
+.button {
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s, color 0.3s;
+    border: 2px solid var(--primary-color);
+}
+
+.primary {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+    border-color: var(--primary-color);
+}
+
+.primary:hover {
+    background-color: transparent;
+    color: var(--primary-color);
+}
+
+.secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.secondary:hover {
+    background-color: var(--primary-color);
+    color: var(--background-dark);
+}
+
+.download-btn {
+    margin-top: 20px;
+}
+
+/* --- About Section --- */
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    color: var(--text-muted);
+}
+
+/* Update: Clean background for the image card */
+.about-photo-card {
+    background-color: transparent; /* Remove the card background */
+    border-radius: 8px;
+    padding: 0; /* Remove padding */
+    text-align: center;
+    box-shadow: none; /* Remove shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Update: Photo is a clean, square-based circle */
+.profile-photo {
+    /* Enforce a square size for the image element */
+    width: 250px; 
+    height: 300px; 
+    
+    border-radius: 0; /* Changed from 50% to 0 for the square background requested */
+    object-fit: cover;
+    margin-bottom: 15px;
+    
+    /* ***** Borderless Style ***** */
+    border: none;
+    box-shadow: none;
+    
+    /* Add a subtle frame for the 'passport' look */
+    border-radius: 4px; /* Slight rounding for a clean square */
+}
+
+.skills-summary {
+    border-top: 1px solid var(--border-color);
+    padding-top: 15px;
+    color: var(--text-light);
+    text-align: left;
+}
+
+/* --- Experience Timeline Section --- */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--border-color);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: -8px;
+    background-color: var(--primary-color);
+    border: 4px solid var(--background-dark);
+    top: 20px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Left side */
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+/* Right side */
+.timeline-item:nth-child(even) {
+    left: 50%;
+    padding-left: 60px;
+}
+
+/* Fix for right item's circle */
+.timeline-item:nth-child(even)::after {
+    left: -8px;
+}
+
+.timeline-content {
+    background-color: var(--card-bg);
+    padding: 25px; 
+    padding-top: 45px; /* Keeps space for the date on mobile */
+    border-radius: 6px;
+    
+    /* Standard Shadow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    
+    /* Smooth transition for the pop-out effect */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    /* **The Pop-Out Effect** */
+    transform: translateY(-8px); /* Moves the card up slightly more */
+    
+    /* **The Pop-Out Glow/Shadow** */
+    box-shadow: 0 8px 25px rgba(0, 189, 212, 0.4); /* Brighter, colored shadow */
+}
+
+.timeline-date {
+    position: absolute;
+    top: 25px;
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+.timeline-item:nth-child(odd) .timeline-date {
+    right: 50px;
+}
+
+.timeline-item:nth-child(even) .timeline-date {
+    left: 50px;
+}
+
+.timeline h3 {
+    margin-bottom: 5px;
+    color: var(--text-light);
+    font-size: 1.25rem;
+}
+
+.timeline-role {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.timeline ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.timeline ul li {
+    margin-bottom: 5px;
+    color: var(--text-muted);
+}
+
+/* --- Projects Section --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, border-color 0.3s;
+    border: 1px solid transparent;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.project-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+.project-tech {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.project-card p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+}
+
+.project-links a {
+    color: var(--text-light);
+    margin-right: 15px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.project-links a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Skills Section --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+}
+
+.skill-category {
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 8px;
+    border-left: 3px solid var(--primary-color);
+}
+
+.skill-category h3 {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    font-size: 1.25rem;
+}
+
+.skill-category i {
+    color: var(--primary-color);
+    margin-right: 10px;
+}
+
+.skill-category ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skill-category ul li {
+    padding: 5px 0;
+    color: var(--text-muted);
+}
+
+/* --- Contact Section --- */
+.contact-section {
+    text-align: center;
+}
+
+.contact-section p {
+    max-width: 600px;
+    margin: 0 auto 30px;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.contact-btn {
+    font-size: 1.1rem;
+    padding: 15px 35px;
+}
+
+.footer-social {
+    margin-top: 40px;
+}
+
+.footer-social a {
+    font-size: 1.8rem;
+    margin: 0 15px;
+    color: var(--text-light);
+    transition: color 0.3s;
+}
+
+.footer-social a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Footer --- */
+footer {
+    padding: 20px 0;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    margin-top: 50px;
+}
+
+/* --- Media Queries for Responsiveness --- */
+@media (max-width: 900px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-photo-card {
+        order: -1; /* Puts the photo card above the text on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+    .timeline::after {
+        left: 20px; /* Move vertical line to the left */
+    }
+    .timeline-item {
+        width: 100%;
+        padding-left: 40px;
+        padding-right: 10px;
+    }
+    .timeline-item:nth-child(even) {
+        left: 0%; /* Stack all items on the left */
+        padding-left: 40px;
+    }
+    .timeline-item::after {
+        left: 12px;
+    }
+    .timeline-item:nth-child(even)::after {
+        left: 12px;
+    }
+    .timeline-date {
+        position: static; /* Move date inside content block */
+        margin-bottom: 5px;
+        font-size: 1rem;
+        text-align: right;
+    }
+    .timeline-item:nth-child(odd) .timeline-date,
+    .timeline-item:nth-child(even) .timeline-date {
+        right: auto;
+        left: auto;
+    }
+
+    nav ul {
+        display: none; /* Hide navigation links on small screens for simplicity */
+    }
+    .nav-container {
+        justify-content: center;
+    }
+}
